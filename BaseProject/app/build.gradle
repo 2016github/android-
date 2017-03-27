@@ -1,0 +1,68 @@
+apply plugin: 'com.android.application'
+
+android {
+    packagingOptions {
+        pickFirst "META-INF/services/javax.ws.rs.ext.MessageBodyReader"
+        pickFirst "META-INF/services/javax.ws.rs.ext.MessageBodyWriter"
+        pickFirst "META-INF/services/com.sun.jersey.spi.inject.InjectableProvider"
+        pickFirst "META-INF/jersey-module-version"
+        pickFirst "META-INF/NOTICE"
+        pickFirst "META-INF/LICENSE"
+        pickFirst "META-INF/services/com.fasterxml.jackson.databind.Module"
+        pickFirst "META-INF/services/com.fasterxml.jackson.core.ObjectCodec"
+        pickFirst "META-INF/services/com.fasterxml.jackson.core.JsonFactory"
+    }
+    compileSdkVersion 25
+    buildToolsVersion '25.0.2'
+    defaultConfig {
+        applicationId "com.king.baseproject"
+        minSdkVersion 15
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+
+
+}
+repositories {
+    flatDir{
+        dirs 'libs'
+    }
+}
+dependencies {
+    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+    compile 'com.android.support:multidex:1.0.1'
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:25.2.0'
+    compile 'io.reactivex:rxjava:1.1.0'
+    compile 'io.reactivex:rxandroid:1.1.0'
+    compile 'com.squareup.retrofit2:retrofit:2.0.0-beta4'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.0-beta4'
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.0.0-beta4'
+    compile 'com.google.code.gson:gson:2.6.2'
+    compile 'com.jakewharton:butterknife:7.0.1'
+    //    //控制rxjava的生命周期
+    compile 'com.trello:rxlifecycle:0.5.0'
+    compile 'com.trello:rxlifecycle-components:0.5.0'
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    testCompile 'junit:junit:4.12'
+    compile 'javax.annotation:javax.annotation-api:1.2'
+    compile 'com.docusign:docusign-esign-java:2.0.2'
+    compile 'com.google.android.gms:play-services:10.2.0'
+    compile 'com.umeng.analytics:analytics:latest.integration'
+}
